@@ -43,7 +43,7 @@ jacocoTestReport {
 
 sonarqube {
 	properties {
-		property "sonar.organization", "advprog-2026-a16-project"
-		property "sonar.projectKey", "advprog-2026-A16-project_individual-preparation"
+		property "sonar.projectKey", "azzzfat-advprog-2026-a16-project_individual-preparation"
+		property "sonar.organization", "azzzfath"
 	}
 }
