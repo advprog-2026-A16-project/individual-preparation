@@ -58,4 +58,16 @@ class ArithmeticUtilityTest {
         double result = arithmeticUtility.exponent(2.0, -2);
         assertEquals(0.25, result);
     }
+
+    @Test
+    void testAddPositiveNumbers() { assertEquals(8.0, arithmeticUtility.add(5,3)); }
+
+    @Test
+    void testAddNegativeNumbers() { assertEquals(-8.0, arithmeticUtility.add(-5,-3));}
+
+    @Test
+    void testAddPositiveAndNegative() { assertEquals(2.0, arithmeticUtility.add(5,-3)); }
+
+    @Test
+    void testAddWithZero() { assertEquals(5.0, arithmeticUtility.add(5,0));}
 }
