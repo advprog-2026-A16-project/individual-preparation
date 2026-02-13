@@ -3,6 +3,8 @@ package com.example.individualprep.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 class VectorUtilityTest {
 
@@ -71,5 +73,23 @@ class VectorUtilityTest {
         double[] result = vectorUtility.add(v1, v2);
 
         assertArrayEquals(expected, result);
+    }
+
+    @Test
+    void testAddVectorsWithDifferentLength() {
+        double[] v1 = {1.0, 2.0};
+        double[] v2 = {1.0, 2.0, 3.0};
+
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.add(v1, v2));
+    }
+
+    @Test
+    void testAddWithNullVector() {
+        double[] v1 = null;
+        double[] v2 = {1.0, 2.0, 3.0};
+
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.add(v1, v2));
     }
 }
