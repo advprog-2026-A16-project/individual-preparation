@@ -92,4 +92,55 @@ class VectorUtilityTest {
         assertThrows(IllegalArgumentException.class,
                 () -> vectorUtility.add(v1, v2));
     }
+
+    @Test
+    void testSubtractTwoVectors() {
+        double[] v1 = {5.0, 7.0, 9.0};
+        double[] v2 = {1.0, 2.0, 3.0};
+        double[] expected = {4.0, 5.0, 6.0};
+
+        double[] result = vectorUtility.subtract(v1, v2);
+
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    void testSubtractResultingInNegativeValues() {
+        double[] v1 = {1.0, 2.0, 3.0};
+        double[] v2 = {5.0, 5.0, 5.0};
+        double[] expected = {-4.0, -3.0, -2.0};
+
+        double[] result = vectorUtility.subtract(v1, v2);
+
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    void testSubtractWithNegativeVector() {
+        double[] v1 = {10.0, 20.0};
+        double[] v2 = {-5.0, -5.0};
+        double[] expected = {15.0, 25.0};
+
+        double[] result = vectorUtility.subtract(v1, v2);
+
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    void testSubtractVectorsWithDifferentLength() {
+        double[] v1 = {1.0, 2.0};
+        double[] v2 = {1.0, 2.0, 3.0};
+
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.subtract(v1, v2));
+    }
+
+    @Test
+    void testSubtractWithNullVector() {
+        double[] v1 = null;
+        double[] v2 = {1.0, 2.0};
+
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.subtract(v1, v2));
+    }
 }
