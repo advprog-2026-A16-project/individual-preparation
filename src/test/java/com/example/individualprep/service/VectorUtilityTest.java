@@ -39,4 +39,37 @@ class VectorUtilityTest {
         double[] result = vectorUtility.multiply(vector, scalar);
         assertArrayEquals(expected, result);
     }
+
+    @Test
+    void testAddTwoVectors() {
+        double[] v1 = {1.0, 2.0, 3.0};
+        double[] v2 = {4.0, 5.0, 6.0};
+        double[] expected = {5.0, 7.0, 9.0};
+
+        double[] result = vectorUtility.add(v1, v2);
+
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    void testAddWithZeroVector() {
+        double[] v1 = {1.0, -2.0, 3.0};
+        double[] v2 = {0.0, 0.0, 0.0};
+        double[] expected = {1.0, -2.0, 3.0};
+
+        double[] result = vectorUtility.add(v1, v2);
+
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    void testAddWithNegativeValues() {
+        double[] v1 = {-1.0, 2.0, -3.0};
+        double[] v2 = {4.0, -5.0, 6.0};
+        double[] expected = {3.0, -3.0, 3.0};
+
+        double[] result = vectorUtility.add(v1, v2);
+
+        assertArrayEquals(expected, result);
+    }
 }
