@@ -1,9 +1,19 @@
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:4.4.1.3373"
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.2'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'jacoco'
-	id "org.sonarqube" version "4.4.1.3373"
 }
 
 group = 'com.example'
@@ -40,3 +50,5 @@ jacocoTestReport {
 		xml.required = true
 	}
 }
+
+apply plugin: 'org.sonarqube'
