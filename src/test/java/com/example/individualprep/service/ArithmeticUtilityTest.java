@@ -27,4 +27,29 @@ class ArithmeticUtilityTest {
     void testMultiplyWithNegativeNumber() {
         assertEquals(-25.0, arithmeticUtility.multiply(5, -5));
     }
+
+    @Test
+    void testDivideTwoPositiveNumbers() {
+        assertEquals(5.0, arithmeticUtility.divide(10, 2));
+    }
+
+    @Test
+    void testDivideWithNegativeNumber() {
+        assertEquals(-5.0, arithmeticUtility.divide(-10, 2));
+    }
+
+    @Test
+    void testDivideZeroByNumber() {
+        assertEquals(0.0, arithmeticUtility.divide(0, 5));
+    }
+
+    @Test
+    void testDivideByZero() {
+        ArithmeticException exception = org.junit.jupiter.api.Assertions.assertThrows(
+                ArithmeticException.class,
+                () -> arithmeticUtility.divide(10, 0)
+        );
+
+        assertEquals("Division by zero", exception.getMessage());
+    }
 }
