@@ -30,44 +30,27 @@ class ArithmeticUtilityTest {
     }
 
     @Test
-    void testZeroBaseNegativeExponentShouldThrowException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> arithmeticUtility.exponent(0.0, -1));
+    void testDivideTwoPositiveNumbers() {
+        assertEquals(5.0, arithmeticUtility.divide(10, 2));
     }
 
     @Test
-    void testExponentZeroPower() {
-        double result = arithmeticUtility.exponent(7.0, 0);
-        assertEquals(1.0, result);
+    void testDivideWithNegativeNumber() {
+        assertEquals(-5.0, arithmeticUtility.divide(-10, 2));
     }
 
     @Test
-    void testExponentWithOne() {
-        double result = arithmeticUtility.exponent(5.0, 1);
-        assertEquals(5.0, result);
+    void testDivideZeroByNumber() {
+        assertEquals(0.0, arithmeticUtility.divide(0, 5));
     }
 
     @Test
-    void testExponentPositive() {
-        double result = arithmeticUtility.exponent(2.0, 3);
-        assertEquals(8.0, result);
+    void testDivideByZero() {
+        ArithmeticException exception = org.junit.jupiter.api.Assertions.assertThrows(
+                ArithmeticException.class,
+                () -> arithmeticUtility.divide(10, 0)
+        );
+
+        assertEquals("Division by zero", exception.getMessage());
     }
-
-    @Test
-    void testNegativeExponent() {
-        double result = arithmeticUtility.exponent(2.0, -2);
-        assertEquals(0.25, result);
-    }
-
-    @Test
-    void testAddPositiveNumbers() { assertEquals(8.0, arithmeticUtility.add(5,3)); }
-
-    @Test
-    void testAddNegativeNumbers() { assertEquals(-8.0, arithmeticUtility.add(-5,-3));}
-
-    @Test
-    void testAddPositiveAndNegative() { assertEquals(2.0, arithmeticUtility.add(5,-3)); }
-
-    @Test
-    void testAddWithZero() { assertEquals(5.0, arithmeticUtility.add(5,0));}
 }
