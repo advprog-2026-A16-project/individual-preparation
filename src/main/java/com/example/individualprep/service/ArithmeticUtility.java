@@ -22,7 +22,32 @@ public class ArithmeticUtility {
     }
 
     public double exponent(double o1, int n) {
-        // TODO: Implement me properly!
-        return 0.0;
+        if (o1 == 0 && n < 0) {
+            throw new IllegalArgumentException("0 cannot be raised to a negative power");
+        }
+
+        if (n == 0) {
+            return 1.0;
+        }
+
+        long remainingExponent = n;
+
+        if (remainingExponent < 0) {
+            o1 = 1.0 / o1;
+            remainingExponent = -remainingExponent;
+        }
+
+        double result = 1.0;
+        double currentBase = o1;
+
+        while (remainingExponent > 0) {
+            if (remainingExponent % 2 == 1) {
+                result *= currentBase;
+            }
+            currentBase *= currentBase;
+            remainingExponent /= 2;
+        }
+
+        return result;
     }
 }
