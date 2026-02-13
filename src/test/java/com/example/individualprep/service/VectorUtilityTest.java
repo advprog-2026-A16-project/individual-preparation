@@ -94,44 +94,53 @@ class VectorUtilityTest {
     }
 
     @Test
-    void testNormPositiveValues() {
-        double[] vector = {3.0, 4.0};
-        double result = vectorUtility.norm(vector);
-        assertEquals(5.0, result, 0.0001);
+    void testSubtractTwoVectors() {
+        double[] v1 = {5.0, 7.0, 9.0};
+        double[] v2 = {1.0, 2.0, 3.0};
+        double[] expected = {4.0, 5.0, 6.0};
+
+        double[] result = vectorUtility.subtract(v1, v2);
+
+        assertArrayEquals(expected, result);
     }
 
     @Test
-    void testNorm_NegativeValues() {
-        double[] vector = {-3.0, -4.0};
-        double result = vectorUtility.norm(vector);
-        assertEquals(5.0, result, 0.0001);
+    void testSubtractResultingInNegativeValues() {
+        double[] v1 = {1.0, 2.0, 3.0};
+        double[] v2 = {5.0, 5.0, 5.0};
+        double[] expected = {-4.0, -3.0, -2.0};
+
+        double[] result = vectorUtility.subtract(v1, v2);
+
+        assertArrayEquals(expected, result);
     }
 
     @Test
-    void testNorm_SingleValue() {
-        double[] vector = {6.0};
-        double result = vectorUtility.norm(vector);
-        assertEquals(6.0, result, 0.0001);
+    void testSubtractWithNegativeVector() {
+        double[] v1 = {10.0, 20.0};
+        double[] v2 = {-5.0, -5.0};
+        double[] expected = {15.0, 25.0};
+
+        double[] result = vectorUtility.subtract(v1, v2);
+
+        assertArrayEquals(expected, result);
     }
 
     @Test
-    void testNorm_ZeroVector() {
-        double[] vector = {0.0, 0.0, 0.0};
-        double result = vectorUtility.norm(vector);
-        assertEquals(0.0, result, 0.0001);
+    void testSubtractVectorsWithDifferentLength() {
+        double[] v1 = {1.0, 2.0};
+        double[] v2 = {1.0, 2.0, 3.0};
+
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.subtract(v1, v2));
     }
 
     @Test
-    void testNorm_NullVector_ShouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            vectorUtility.norm(null);
-        });
-    }
+    void testSubtractWithNullVector() {
+        double[] v1 = null;
+        double[] v2 = {1.0, 2.0};
 
-    @Test
-    void testNorm_EmptyVector_ShouldThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            vectorUtility.norm(new double[]{});
-        });
+        assertThrows(IllegalArgumentException.class,
+                () -> vectorUtility.subtract(v1, v2));
     }
 }
