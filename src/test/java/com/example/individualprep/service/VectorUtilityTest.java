@@ -2,8 +2,8 @@ package com.example.individualprep.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class VectorUtilityTest {
@@ -91,5 +91,47 @@ class VectorUtilityTest {
 
         assertThrows(IllegalArgumentException.class,
                 () -> vectorUtility.add(v1, v2));
+    }
+
+    @Test
+    void testNormPositiveValues() {
+        double[] vector = {3.0, 4.0};
+        double result = vectorUtility.norm(vector);
+        assertEquals(5.0, result, 0.0001);
+    }
+
+    @Test
+    void testNorm_NegativeValues() {
+        double[] vector = {-3.0, -4.0};
+        double result = vectorUtility.norm(vector);
+        assertEquals(5.0, result, 0.0001);
+    }
+
+    @Test
+    void testNorm_SingleValue() {
+        double[] vector = {6.0};
+        double result = vectorUtility.norm(vector);
+        assertEquals(6.0, result, 0.0001);
+    }
+
+    @Test
+    void testNorm_ZeroVector() {
+        double[] vector = {0.0, 0.0, 0.0};
+        double result = vectorUtility.norm(vector);
+        assertEquals(0.0, result, 0.0001);
+    }
+
+    @Test
+    void testNorm_NullVector_ShouldThrowException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.norm(null);
+        });
+    }
+
+    @Test
+    void testNorm_EmptyVector_ShouldThrowException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.norm(new double[]{});
+        });
     }
 }
